@@ -3,10 +3,10 @@ import { Pair, Token, Bundle } from '../types/schema'
 import { BigDecimal, Address, BigInt } from '@graphprotocol/graph-ts/index'
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD, UNTRACKED_PAIRS } from './helpers'
 
-const WETH_ADDRESS = '0x4446Fc4eb47f2f6586f9fAAb68B3498F86C07521'
-const USDC_WETH_PAIR = '0xe686eE5303F8AF062939E974CdA01FF1C4C54E4d' // created block
-const DAI_WETH_PAIR = '0xd921349CfFf5eE6C0111Fb4ad1ff29E7aE47f19F'  // created block
-const USDT_WETH_PAIR = '0x07EC10fD25bF422d4867919f7B2A8BC7008f4B34' // created block
+const WETH_ADDRESS = '0x4446fc4eb47f2f6586f9faab68b3498f86c07521'
+const USDC_WETH_PAIR = '0x94bd136053aacce8bc80eaaadfc7bd1b1f5c51b3' // created block
+const DAI_WETH_PAIR = '0x16f76820b16c3e2f8697258b22cdc11af950e65a'  // created block
+const USDT_WETH_PAIR = '0xb3b92d6b2656f9ceb4a381718361a21bf9b82bd9' // created block
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
@@ -40,18 +40,42 @@ export function getEthPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  '0x4446Fc4eb47f2f6586f9fAAb68B3498F86C07521', // WETH
-  '0xdBC7d900aCBe524E01dFf9c1Aa6Ce6d3900Ed812', // MJT
+  '0x4446fc4eb47f2f6586f9faab68b3498f86c07521', // WKCS
+  '0x0039f574ee5cc39bdd162e9a88e3eb1f111baf48', // USDT
+  '0x980a5afef3d17ad98635f6c5aebcbaeded3c3430', // USDC
+  '0xf55af137a98607f7ed2efefa4cd2dfe70e4253b1', // ETH
+  '0xee58e4d62b10a92db1089d4d040b759c28ae16cd', // UNI
+  '0x47841910329aaa6b88d5e9dcde9000195151dc72', // LINK
+  '0x652d253b7ca91810a4a05acfc39729387c5090c0', // CRO
+  '0xb49dd3edb98fbe82a01dfcb556cd016964baf5a3', // GRT
+  '0xde81028c743f5304fe2cdefac588f572d629a687', // MKR
+  '0x791630c11c7159a748d8c2267a66780b3ddc40a7', // QNT
+  '0x16c4106966ce30e06e806a7c40eefb46d84ce7e5', // COMP
+  '0x31965b5c9c55f5579eb49f4b3acc59aa10a7b98e', // SNX
+  '0x6e8ce0519b7e4d691bace464099547e5fc17679c', // CHZ
+  '0x6e2d990c8e718e7b6d86ed08ebf0ff2dec05253b', // ENJ
+  '0xd17027b85abf02721f953ee528721a980fa58941', // TUSD
+  '0xdfa3ef49d357c6b0b2dfbb88701af2b7a053fd0a', // YFI
+  '0x621c1e8610e4b9b7fc9f043203c008ede52e92f5', // TEL
+  '0xb7a18bd55e8e3e2262d7c8ee7b4dd9b216df0faf', // NEXO
+  '0x0bf46c86ce3b904660ae85677eaa20b0c1b24064', // BAT
+  '0x69a7169f9da9bba04b982e49ffd8d6a16c70c590', // PAX
+  '0xbec1e1009ce00ecf7f16372451ac849b39c32897', // HUSD
+  '0x79f3244f3ffd7500a31a90bb83c7d56649c2c7c5', // 1INCH
+  '0x73b6086955c820370a18002f60e9b51fb67d7e1a', // SHIB
+  '0x4500e16da66b99e0c55d7b46ebbd59bc413ba171', // CRV
+  '0xe0a60890bb7f9250089455620063fb6fe4dc159a', // SUSHI
+  '0xe76e97c157658004ee22e01c03a5e21a4655a2fd', // AAVE
+  '0x8724f9fb7b3f1bb6f2c90b3ad3fd6b3c20a06429', // DODO
+  '0x1b8e27aba297466fc6765ce55bd12a8e216759da', // MATIC
+  '0xfc31366be1795c1ff444b9fbf55759733ad4d26d', // BAL
+  '0xc19a5cacc2bb68ff09f2fcc695f31493a039fa5e', // MANA
+  '0x2ca48b4eea5a731c2b54e7c3944dbdb87c0cfb6f', // MJT
   '0xc9baa8cfdde8e328787e29b4b078abf2dadc2055', // DAI
-  '0x980a5AfEf3D17aD98635F6C5aebCBAedEd3c3430', // USDC
-  '0x0039f574eE5cC39bdD162E9A88e3EB1f111bAF48', // USDT
-  '0xdE81028C743f5304fe2cdEfac588f572d629a687', // MKR
-  '0x16c4106966cE30e06E806A7c40eEFb46d84cE7e5', // COMP
-  '0x47841910329aaa6b88D5e9DcdE9000195151dc72', // LINK
-  '0x31965b5c9c55f5579eb49F4b3AcC59aA10a7B98E', // SNX
-  '0xdfa3Ef49d357c6b0B2DfBB88701af2b7A053fD0A', // YFI
-  '0xEe58E4D62b10A92dB1089d4D040B759C28aE16Cd', // UNI
+  '0x218c3c3d49d0e7b37aff0d8bb079de36ae61a4c0', // BTC
   '0x4a81704d8c16d9fb0d7f61b747d0b5a272badf14', // KUS
+  '0xbd451b952de19f2c7ba2c8c516b0740484e953b2', // KUD
+  '0x516f50028780b60e2fe08efa853124438f9e46a7', // KAFE
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
