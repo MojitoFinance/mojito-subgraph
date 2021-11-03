@@ -42,13 +42,18 @@ These contain specifc information about a transaction. Things like which pair tr
 
 ## Example Queries
 
+### api endpoints
+```graphql
+https://thegraph.kcc.network/subgraphs/name/mojito/swap
+```
+
 ### Querying Aggregated Mojito Data
 
 This query fetches aggredated data from all mojito pairs and tokens, to give a view into how much activity is happening within the whole protocol.
 
 ```graphql
 {
-   mojitoFactories(first: 1) {
+   uniswapFactories(first: 1) {
     pairCount
     totalVolumeUSD
     totalLiquidityUSD
